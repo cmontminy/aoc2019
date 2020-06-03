@@ -5,15 +5,43 @@
 #include <iostream>  
 #include <fstream>
   
-typedef std::cout cout_std; 
+using namespace std;
+
+void part_one(ifstream&);
+void part_two(ifstream&);
 
 int main() { 
-    
-      
-    return 0; 
+    ifstream input ("input.txt");
+    if (input.is_open()) {
+        //part_one(input);
+        part_two(input);
+    }
+    input.close();
+    return 0;
 } 
 
-int part_one() {
+void part_one(ifstream& input) {
+    int sum = 0;
+    int line;
 
+    while (input >> line) {
+        sum += (line / 3) - 2;
+    }
+
+    cout << sum << "\n";
 }
 
+void part_two(ifstream& input) {
+    int sum = 0;
+    int line;
+
+    while (input >> line) {
+        line = (line / 3) - 2;
+        while (line > 0) {
+            sum += line;
+            line = (line / 3) - 2;
+        }
+    }
+
+    cout << sum << "\n";
+}
